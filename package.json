@@ -7,7 +7,7 @@
   },
   "repository": "git://github.com/Clever/coffee-jshint.git",
   "bin": {
-    "coffeehint": "./cli.js"
+    "coffee-jshint": "./cli.js"
   },
   "scripts": {
     "prepublish": "make"
