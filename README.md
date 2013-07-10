@@ -4,11 +4,10 @@ Runs your CoffeeScript source through [JSHint](http://www.jshint.com/) to check 
 
 ## Usage
 
-(with CoffeeScript installed globally)
-
 To check some files:
 
-    coffee main.coffee -- file1.coffee file2.coffee ...
+    make
+    ./cli.js file1.coffee file2.coffee ...
 
 To recursively check all `.coffee` files in a directory (excluding those in any `node_modules` subdirs):
 
