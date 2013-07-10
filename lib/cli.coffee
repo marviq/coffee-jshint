@@ -1,8 +1,4 @@
-hint = undefined
-try
-  hint = require("coffee-hint")
-catch err
-  hint = require("./lib-js/hint")
+hint = require("./lib-js/hint")
 
 coffeePaths = process.argv[2..]
 if hint coffeePaths, true
