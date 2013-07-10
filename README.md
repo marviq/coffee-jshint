@@ -2,12 +2,15 @@
 
 Runs your CoffeeScript source through [JSHint](http://www.jshint.com/) to check for errors.
 
+## Installation
+
+    npm install coffee-jshint -g
+
 ## Usage
 
 To check some files:
 
-    make
-    ./cli.js file1.coffee file2.coffee ...
+    coffee-jshint file1.coffee file2.coffee ...
 
 To recursively check all `.coffee` files in a directory (excluding those in any `node_modules` subdirs):
 
