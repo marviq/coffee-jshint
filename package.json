@@ -5,6 +5,13 @@
   "engines": {
     "node": ">=0.8.x"
   },
+  "repository": "git://github.com/Clever/coffee-jshint.git",
+  "bin": {
+    "coffeehint": "./cli.js"
+  },
+  "scripts": {
+    "prepublish": "make"
+  },
   "license": "BSD",
   "dependencies": {
     "coffee-script": "~1.6.3",
