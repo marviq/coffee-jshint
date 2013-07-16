@@ -17,11 +17,11 @@ errorsToSkip = [
 ]
 
 # If log is true, prints out results after processing each file
-hintFiles = (paths, options, withDefaults, log) ->
-  optionsObj = buildOptionsObj(
-    if withDefaults then _.union options, defaultOptions else options)
+hintFiles = (paths, config, log) ->
+  options = buildTrueObj(
+    if config.withDefaults then _.union config.options, defaultOptions else options)
   allErrors = _.map paths, (path) ->
-    errors = hint fs.readFileSync(path), optionsObj
+    errors = hint fs.readFileSync(path), options, buildTrueObj config.globals
     if log and errors?
       console.log "--------------------------------"
       console.log formatErrors path, errors
@@ -33,10 +33,10 @@ hintFiles = (paths, options, withDefaults, log) ->
       console.log "--------------------------------"
   allErrors
 
-hint = (coffeeSource, options) ->
+hint = (coffeeSource, options, globals) ->
   csOptions = sourceMap: true, filename: "doesn't matter"
   {js, v3SourceMap, sourceMap} = CoffeeScript.compile coffeeSource.toString(), csOptions
-  if jshint js, options
+  if jshint js, options, globals
     []
   else if not jshint.errors?
     console.log "jshint didn't pass but returned no errors"
@@ -59,9 +59,7 @@ formatErrors = (path, errors) ->
       "#{error.line}:#{error.character}: #{error.reason}"
     .join('\n')
 
-buildOptionsObj = (options) ->
-  _.object options, (true for i in [0..options.length])
+buildTrueObj = (keys) ->
+  _.object keys, (true for i in [0..options.length])
 
-module.exports = 
-  hintFiles: hintFiles
-  hint: hint
+module.exports = hintFiles

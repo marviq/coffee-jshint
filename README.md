@@ -30,9 +30,21 @@ If you really must turn off some of the default options, use the `--default-opti
 
     coffee-jshint --default-options-off --options undef,eqnull ...
 
+### Globals
+
+You'll probably get a lot of complaints from Coffee->JSHint about undefined global variables like `console`, `$`, or `require`. Depending on where you're running your code, you might want to allow a few global variables. One easy way to handle this is to use JSHint's built in [environment options](http://www.jshint.com/docs/#environments).
+
+For instance, if you're running your code using Node.js, then you'll want to turn on the `node` option. It works like any other option:
+
+    coffee-jshint -o node ...
+
+If you have some globals that aren't covered by any of environments, well then you should probably check yo'self before you wreck yo'self. But if you really want to turn off warnings for some global variables, Coffee->JSHint supports it using the `--globals` or `-g` option. One use case is when using [Mocha](http://visionmedia.github.io/mocha/), a testing library:
+
+    coffee-jshint -o node --globals describe,it ...
+
 ### Bash
 
-Coffee->JSHint plays nicely with your favorite Bash utilities. We've included a convenient example: to recursively check all `.coffee` files in a directory (excluding those in any `node_modules` subdirs):
+Coffee->JSHint plays nicely with your favorite Bash utilities. We've included a convenient example that recursively checks all `.coffee` files in a directory (excluding those in any `node_modules` subdirs):
 
     ./scripts/find-and-hint.sh <dir to search> <other options>
 
@@ -42,7 +54,7 @@ For example:
 
 ### Git hook
 
-To use as a git pre-commit hook to check all the files in a repo before you commit, put something like this in `.git/hooks/pre-commit`:
+To use Coffee->JSHint as a git pre-commit hook to check all the files in a repo before you commit, put something like this in `.git/hooks/pre-commit`:
 
 ```bash
 # Allows us to read user input below, assigns stdin to keyboard

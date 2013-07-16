@@ -1,4 +1,4 @@
-hint = require("./lib-js/hint").hintFiles
+hintFiles = require("./lib-js/hint")
 argv = require("optimist")
   .options(
     'options':
@@ -7,12 +7,20 @@ argv = require("optimist")
     'defaults-options-off':
       type: 'boolean'
       describe: 'turns off default options'
+    'globals':
+      alias: 'g'
+      describe: 'comma separated list of global variable names to permit'
   ).argv
 
 coffeePaths = argv._
-options = argv.options?.split(',') ? []
 
-errors = hint coffeePaths, options, (not argv['default-options-off']), true
+splitArgs = (strList) -> strList?.split(',') ? []
+
+errors = hintFiles(coffeePaths, 
+  options: splitArgs argv.options
+  withDefaults: (not argv['default-options-off'])
+  globals: splitArgs argv.globals
+, true)
 if errors.length is 0
   process.exit 0
 else
