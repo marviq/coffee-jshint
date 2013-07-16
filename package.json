@@ -1,7 +1,7 @@
 {
   "name": "coffee-jshint",
   "version": "0.0.1",
-  "description": "Runs CoffeeScript source through JSHint",
+  "description": "Checks CoffeeScript source for errors using JSHint",
   "engines": {
     "node": ">=0.8.x"
   },
@@ -16,6 +16,7 @@
   "dependencies": {
     "coffee-script": "~1.6.3",
     "jshint": "~2.1.4",
+    "optimist": "~0.6.0",
     "underscore": "~1.4.4"
   }
 }

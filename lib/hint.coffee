@@ -3,12 +3,8 @@ CoffeeScript = require 'coffee-script'
 _ = require 'underscore'
 jshint = require('jshint').JSHINT
 
-#console.log jshint.data() # full report
-
-options = [
-  'node'
+defaultOptions = [
   'undef'
-  #'unused'
   # options to relax for cs
   'eqnull'
   'expr'
@@ -19,29 +15,34 @@ errorsToSkip = [
   "Did you mean to return a conditional instead of an assignment?"
   "Confusing use of '!'."
 ]
-optionsObj = {}
-optionsObj[opt] = true for opt in options
 
-hintFiles = (coffeePaths, log) ->
-  noErrors = true
-  _.each coffeePaths, (path) ->
-    errors = hintOneFile path
-    if errors?
-      console.log formatErrors path, errors if log
-      noErrors = false
+# If log is true, prints out results after processing each file
+hintFiles = (paths, options, withDefaults, log) ->
+  optionsObj = buildOptionsObj(
+    if withDefaults then _.union options, defaultOptions else options)
+  allErrors = _.map paths, (path) ->
+    errors = hint fs.readFileSync(path), optionsObj
+    if log and errors?
+      console.log "--------------------------------"
+      console.log formatErrors path, errors
+    errors
   if log
-    if noErrors
+    if _.flatten(allErrors).length is 0
       console.log "No JSHint errors found!"
     else
       console.log "--------------------------------"
-  noErrors
+  allErrors
 
-hintOneFile = (coffeePath) ->
-  coffeeSource = fs.readFileSync coffeePath
-  csOptions = sourceMap: true, filename: coffeePath
+hint = (coffeeSource, options) ->
+  csOptions = sourceMap: true, filename: "doesn't matter"
   {js, v3SourceMap, sourceMap} = CoffeeScript.compile coffeeSource.toString(), csOptions
-  unless jshint js, optionsObj
-    errors = _.chain(jshint.errors)
+  if jshint js, options
+    []
+  else if not jshint.errors?
+    console.log "jshint didn't pass but returned no errors"
+    []
+  else
+    _.chain(jshint.errors)
       # Convert errors to use coffee source locations instead of js locations
       .map((error) ->
         [line, col] = sourceMap.sourceLocation [error.line, error.character]
@@ -50,14 +51,17 @@ hintOneFile = (coffeePath) ->
       # Get rid of errors that don't apply to coffee very well
       .filter((error) -> error.reason not in errorsToSkip)
       .value()
-    errors if errors.length > 0
 
 formatErrors = (path, errors) ->
-  "--------------------------------\n" +
   "#{path}\n" +
   _(errors)
     .map (error) ->
       "#{error.line}:#{error.character}: #{error.reason}"
     .join('\n')
 
-module.exports = hintFiles
+buildOptionsObj = (options) ->
+  _.object options, (true for i in [0..options.length])
+
+module.exports = 
+  hintFiles: hintFiles
+  hint: hint
