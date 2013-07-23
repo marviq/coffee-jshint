@@ -60,6 +60,6 @@ formatErrors = (path, errors) ->
     .join('\n')
 
 buildTrueObj = (keys) ->
-  _.object keys, (true for i in [0..options.length])
+  _.object keys, (true for i in [0..keys.length])
 
 module.exports = hintFiles
