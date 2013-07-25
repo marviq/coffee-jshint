@@ -1,3 +1,4 @@
+_ = require "underscore"
 hintFiles = require("./lib-js/hint")
 argv = require("optimist")
   .options(
@@ -12,16 +13,20 @@ argv = require("optimist")
       describe: 'comma separated list of global variable names to permit'
   ).argv
 
-coffeePaths = argv._
-
 splitArgs = (strList) -> strList?.split(',') ? []
 
-errors = hintFiles(coffeePaths, 
+# Filter out non-coffee paths
+{coffee, other} = _(argv._).groupBy (path) ->
+  if /.+\.coffee$/.test path then "coffee" else "other"
+if other?.length > 0
+  console.log "Skipping files that don't end in .coffee:\n" + other.join('\n')
+
+errors = hintFiles(coffee,
   options: splitArgs argv.options
   withDefaults: (not argv['default-options-off'])
   globals: splitArgs argv.globals
 , true)
-if errors.length is 0
+if _.flatten(errors).length is 0
   process.exit 0
 else
   process.exit 1

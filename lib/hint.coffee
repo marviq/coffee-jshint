@@ -22,7 +22,7 @@ hintFiles = (paths, config, log) ->
     if config.withDefaults then _.union config.options, defaultOptions else options)
   allErrors = _.map paths, (path) ->
     errors = hint fs.readFileSync(path), options, buildTrueObj config.globals
-    if log and errors?
+    if log and errors.length > 0
       console.log "--------------------------------"
       console.log formatErrors path, errors
     errors
