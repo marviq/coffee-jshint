@@ -42,33 +42,22 @@ If you have some globals that aren't covered by any of environments, well then y
 
     coffee-jshint -o node --globals describe,it ...
 
-### Bash
+### Shell scripting
 
-Coffee->JSHint plays nicely with your favorite Bash utilities. We've included a convenient example that recursively checks all `.coffee` files in a directory (excluding those in any `node_modules` subdirs):
+Coffee->JSHint plays nicely with your favorite Unix utilities. If you want to recursively search all the files in a directory, try piping in the results of a `find`. Here's an example that also uses `grep` to filter out files in `node_modules/`:
 
-    ./scripts/find-and-hint.sh <dir to search> <other options>
-
-For example:
-
-    ./scripts/find-and-hint.sh . -o node
+    find . -type f -path "*.coffee" | grep -v "node_modules/" | xargs coffee-jshint
 
 ### Git hook
 
-To use Coffee->JSHint as a git pre-commit hook to check all the files in a repo before you commit, put something like this in `.git/hooks/pre-commit`:
+To use Coffee->JSHint as a git pre-commit hook to check changed files before you commit, put something like this in `.git/hooks/pre-commit`:
 
 ```bash
-# Allows us to read user input below, assigns stdin to keyboard
-# http://stackoverflow.com/questions/3417896/how-do-i-prompt-the-user-from-within-a-commit-msg-hook
-exec < /dev/tty
-
-# Run Coffee->JSHint
-path/to/coffee-jshint/scripts/find-and-hint.sh .
-if [ $? -ne 0 ]; then
-  read -p "Would you like to ignore JSHint warnings and commit anyway? (y/n) " choice
-  case "$choice" in
-    [yY] ) exit 0;;
-    [nN] ) exit 1;;
-    * ) exit 1;;
-  esac
+git diff --staged --name-only | xargs coffee-jshint
+if [[ $? -ne 0 ]]; then
+    echo 'WARNING: You are about to commit files with coffee-jshint warnings'
+    exit 1
 fi
 ```
+
+This will take all the files you plan to commit changes to, run them through `coffee-jshint`, and exit with status code `1` if there are any warnings (which it will also print out). If there are warnings, the commit will be aborted, but you can always do `git commit --no-verify` to bypass the hook.
