@@ -20,18 +20,12 @@ errorsToSkip = [
 hintFiles = (paths, config, log) ->
   options = buildTrueObj(
     if config.withDefaults then _.union config.options, defaultOptions else options)
-  allErrors = _.map paths, (path) ->
+  _.map paths, (path) ->
     errors = hint fs.readFileSync(path), options, buildTrueObj config.globals
     if log and errors.length > 0
       console.log "--------------------------------"
       console.log formatErrors path, errors
     errors
-  if log
-    if _.flatten(allErrors).length is 0
-      console.log "No JSHint errors found!"
-    else
-      console.log "--------------------------------"
-  allErrors
 
 hint = (coffeeSource, options, globals) ->
   csOptions = sourceMap: true, filename: "doesn't matter"
