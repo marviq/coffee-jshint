@@ -19,9 +19,16 @@ errorsToSkip = [
 # If log is true, prints out results after processing each file
 hintFiles = (paths, config, log) ->
   options = buildTrueObj(
-    if config.withDefaults then _.union config.options, defaultOptions else options)
+    if config.withDefaults
+    then _.union config.options, defaultOptions
+    else options)
   _.map paths, (path) ->
-    errors = hint fs.readFileSync(path), options, buildTrueObj config.globals
+    try
+      source = fs.readFileSync(path)
+    catch err
+      if config.verbose then console.log "Error reading #{path}"
+      return []
+    errors = hint source, options, buildTrueObj config.globals
     if log and errors.length > 0
       console.log "--------------------------------"
       console.log formatErrors path, errors
