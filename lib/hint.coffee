@@ -43,8 +43,9 @@ hint = (coffeeSource, options, globals) ->
     console.log "jshint didn't pass but returned no errors"
     []
   else
-    jshint.errors = _.compact(jshint.errors)   # last jshint.errors item could be null if it bailed because too many errors 
     _.chain(jshint.errors)
+      # last jshint.errors item could be null if it bailed because too many errors 
+      .compact(jshint.errors)
       # Convert errors to use coffee source locations instead of js locations
       .map((error) ->
         [line, col] = sourceMap.sourceLocation [error.line - 1, error.character - 1]
