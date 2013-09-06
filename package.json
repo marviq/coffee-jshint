@@ -1,6 +1,6 @@
 {
   "name": "coffee-jshint",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Checks CoffeeScript source for errors using JSHint",
   "engines": {
     "node": ">=0.8.x"

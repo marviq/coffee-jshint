@@ -16,6 +16,7 @@ errorsToSkip = [
   "Did you mean to return a conditional instead of an assignment?"
   "Confusing use of '!'."
   "Wrap the /regexp/ literal in parens to disambiguate the slash operator."
+  "Creating global 'for' variable. Should be 'for (var"
 ]
 
 # If log is true, prints out results after processing each file
@@ -47,12 +48,12 @@ hint = (coffeeSource, options, globals) ->
   else
     _.chain(jshint.errors)
       # Convert errors to use coffee source locations instead of js locations
-      .map((error) ->
+      .map (error) ->
         [line, col] = sourceMap.sourceLocation [error.line - 1, error.character - 1]
         _.extend error, line: line + 1, character: col + 1
-      )
       # Get rid of errors that don't apply to coffee very well
-      .filter((error) -> error.reason not in errorsToSkip)
+      .filter (error) ->
+        not _.any errorsToSkip, (to_skip) -> error.reason.indexOf to_skip >= 0
       .value()
 
 formatErrors = (path, errors) ->
