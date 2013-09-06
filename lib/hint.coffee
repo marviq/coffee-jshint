@@ -10,10 +10,12 @@ defaultOptions = [
   'expr'
   'shadow'
   'sub'
+  'multistr'
 ]
 errorsToSkip = [
   "Did you mean to return a conditional instead of an assignment?"
   "Confusing use of '!'."
+  "Wrap the /regexp/ literal in parens to disambiguate the slash operator."
 ]
 
 # If log is true, prints out results after processing each file

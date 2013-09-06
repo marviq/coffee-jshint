@@ -21,6 +21,7 @@ JSHint takes [a bunch of options](http://www.jshint.com/docs/#options) that tell
 - **expr:** suppresses warnings about expressions in unexpected positions, which can only occur in generated JS when the CoffeeScript compiler does it on purpose
 - **shadow:** suppresses warnings about variable shadowing, which is fine since CoffeeScript has sane scoping rules and generates safely scoped JS that uses shadowed variables
 - **sub:** suppresses warnings about using bracket object lookup notation (`obj['field']`) when you could use dot notation (`obj.field`) since we're grown ups and can make our own decisions about what lookup syntax is best
+- **multistr:** suppresses warnings about multiline strings, since CoffeeScript takes care of them
 
 To turn on more options, you can use the `--options` or `-o` flag:
 
