@@ -51,8 +51,10 @@ hint = (coffeeSource, options, globals) ->
       .compact()
       # Convert errors to use coffee source locations instead of js locations
       .map (error) ->
-        [line, col] = sourceMap.sourceLocation [error.line - 1, error.character - 1]
-        _.extend error, line: line + 1, character: col + 1
+        try [line, col] = sourceMap.sourceLocation [error.line - 1, error.character - 1]
+        _.extend error,
+          line: if line? then line + 1 else '?'
+          character: if col? then col + 1 else '?'
       # Get rid of errors that don't apply to coffee very well
       .filter (error) ->
         not _.any errorsToSkip, (to_skip) -> error.reason.indexOf(to_skip) >= 0
