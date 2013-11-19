@@ -24,7 +24,7 @@ hintFiles = (paths, config, log) ->
   options = buildTrueObj(
     if config.withDefaults
     then _.union config.options, defaultOptions
-    else options)
+    else config.options)
   _.map paths, (path) ->
     try
       source = fs.readFileSync(path)
