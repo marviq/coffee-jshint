@@ -4,7 +4,7 @@ Runs your CoffeeScript source through [JSHint](http://www.jshint.com/) to check 
 
 ## Installation
 
-    npm install coffee-script -g // You can use any version between 1.6 and 1.8
+    npm install coffee-script -g // See package.json for supported versions (most)
     npm install coffee-jshint -g
 
 ## Usage
