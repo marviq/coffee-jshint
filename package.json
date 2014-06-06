@@ -14,7 +14,7 @@
   },
   "license": "BSD",
   "dependencies": {
-    "jshint": "~2.1.4",
+    "jshint": "~2.5.1",
     "optimist": "~0.6.0",
     "underscore": "~1.4.4"
   },
