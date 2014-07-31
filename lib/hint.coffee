@@ -17,6 +17,7 @@ errorsToSkip = [
   "Confusing use of '!'."
   "Wrap the /regexp/ literal in parens to disambiguate the slash operator."
   "Creating global 'for' variable. Should be 'for (var"
+  "Missing '()' invoking a constructor." # covered by coffeelint rule non_empty_constructor_needs_parens
 ]
 
 # If log is true, prints out results after processing each file
