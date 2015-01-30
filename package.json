@@ -1,6 +1,6 @@
 {
   "name": "coffee-jshint",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Checks CoffeeScript source for errors using JSHint",
   "engines": {
     "node": ">=0.8.x"
@@ -19,7 +19,7 @@
     "underscore": "~1.4.4"
   },
   "peerDependencies": {
-    "coffee-script": ">= 1.6 <= 1.8.0"
+    "coffee-script": ">= 1.6 <= 1.9.0"
   },
   "devDependencies": {
     "coffee-script": "~1.6.0"
