@@ -14,9 +14,9 @@
   },
   "license": "BSD",
   "dependencies": {
-    "jshint": "~2.5.1",
-    "optimist": "~0.6.0",
-    "underscore": "~1.4.4"
+    "jshint": "~2.8.0",
+    "optimist": "~0.6.1",
+    "underscore": "~1.8.3"
   },
   "peerDependencies": {
     "coffee-script": ">= 1.6 <= 1.8.0"
