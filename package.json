@@ -12,7 +12,7 @@
   "scripts": {
     "prepublish": "make"
   },
-  "license": "BSD",
+  "license": "Apache-2.0",
   "dependencies": {
     "jshint": "~2.8.0",
     "optimist": "~0.6.1",
