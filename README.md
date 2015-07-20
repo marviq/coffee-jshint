@@ -63,3 +63,12 @@ fi
 ```
 
 This will take all the files you plan to commit changes to, run them through `coffee-jshint`, and exit with status code `1` if there are any warnings (which it will also print out). If there are warnings, the commit will be aborted, but you can always do `git commit --no-verify` to bypass the hook.
+
+## Releasing
+
+To release a new version:
+
+    git checkout master
+    npm version <major|minor|patch>
+    git push && git push --tags
+    npm publish
