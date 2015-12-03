@@ -1,5 +1,6 @@
 fs = require 'fs'
 CoffeeScript = require 'coffee-script'
+CoffeeReactTransform = require 'coffee-react-transform'
 _ = require 'underscore'
 jshint = require('jshint').JSHINT
 
@@ -29,10 +30,20 @@ hintFiles = (paths, config, log) ->
   _.map paths, (path) ->
     try
       source = fs.readFileSync(path)
+      source = source.toString()
     catch err
       if config.verbose then console.log "Error reading #{path}"
       return []
+
+    if config.react
+        try
+          source = CoffeeReactTransform source
+        catch err
+          if config.verbose then console.log "Error transforming #{path}"
+          return []
+
     errors = hint source, options, buildTrueObj config.globals
+
     if log and errors.length > 0
       console.log "--------------------------------"
       console.log formatErrors path, errors
@@ -40,7 +51,7 @@ hintFiles = (paths, config, log) ->
 
 hint = (coffeeSource, options, globals) ->
   csOptions = sourceMap: true, filename: "doesn't matter"
-  {js, v3SourceMap, sourceMap} = CoffeeScript.compile coffeeSource.toString(), csOptions
+  {js, v3SourceMap, sourceMap} = CoffeeScript.compile coffeeSource, csOptions
   if jshint js, options, globals
     []
   else if not jshint.errors?

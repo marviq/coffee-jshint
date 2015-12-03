@@ -12,6 +12,10 @@ hintFiles = require("./lib-js/hint")
     globals:
       alias: 'g'
       describe: 'comma separated list of global variable names to permit'
+    react:
+      alias: 'r'
+      type: 'boolean'
+      describe: 'enable jsx transformation step'
     verbose:
       alias: 'v'
       type: 'boolean'
@@ -41,6 +45,7 @@ switch
       withDefaults: (not argv['default-options-off'])
       globals: splitArgs argv.globals
       verbose: argv.verbose
+      react: argv.react
     , true)
     if _.flatten(errors).length is 0
       process.exit 0
