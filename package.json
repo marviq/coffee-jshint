@@ -23,7 +23,7 @@
     "jshint",
     "marviq"
   ],
-  "license": "Apache-2.0",
+  "license": "BSD-3-Clause",
   "name": "coffee-jshint",
   "peerDependencies": {
     "coffee-script": ">= 1.6 < 2"
