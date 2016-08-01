@@ -17,6 +17,12 @@
   "engines": {
     "node": ">=0.8.x"
   },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "cli.js",
+    "lib-js"
+  ],
   "homepage": "https://github.com/marviq/coffee-jshint#readme",
   "keywords": [
     "coffeescript",
