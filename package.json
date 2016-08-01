@@ -2,6 +2,9 @@
   "bin": {
     "coffee-jshint": "./cli.js"
   },
+  "bugs": {
+    "url": "https://github.com/marviq/coffee-jshint/issues"
+  },
   "dependencies": {
     "jshint": "~2.9.2",
     "optimist": "~0.6.1",
@@ -14,15 +17,25 @@
   "engines": {
     "node": ">=0.8.x"
   },
+  "homepage": "https://github.com/marviq/coffee-jshint#readme",
+  "keywords": [
+    "coffeescript",
+    "jshint",
+    "marviq"
+  ],
   "license": "Apache-2.0",
   "name": "coffee-jshint",
   "peerDependencies": {
     "coffee-script": ">= 1.6 < 2"
   },
+  "private": false,
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "repository": "git://github.com/Clever/coffee-jshint.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marviq/coffee-jshint.git"
+  },
   "scripts": {
     "prepublish": "make"
   },
