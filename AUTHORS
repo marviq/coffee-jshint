@@ -1,0 +1,12 @@
+##  https://docs.npmjs.com/files/package.json#default-values
+##
+##    | `"contributors": [ ... ]`
+##    |
+##    | If there is an AUTHORS file in the root of your package, npm will treat
+##    | each line as a `Name <email> (url)` format, where `email` and `url` are
+##    | optional. Lines which start with a # or are blank, will be ignored.
+
+David Bouman (https://github.com/cueedee)
+rgarcia <rgarcia2009@gmail.com>
+jonahkagan <jonahkagan@gmail.com>
+azylman <alex@zylman.com>

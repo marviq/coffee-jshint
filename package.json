@@ -18,6 +18,7 @@
     "node": ">=0.8.x"
   },
   "files": [
+    "AUTHORS",
     "LICENSE",
     "README.md",
     "cli.js",
