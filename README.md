@@ -40,7 +40,7 @@ For instance, if you're running your code using Node.js, then you'll want to tur
 
     coffee-jshint -o node ...
 
-If you have some globals that aren't covered by any of environments, well then you should probably check yo'self before you wreck yo'self. But if you really want to turn off warnings for some global variables, Coffee->JSHint supports it using the `--globals` or `-g` option. One use case is when using [Mocha](http://visionmedia.github.io/mocha/), a testing library:
+If you have some globals that aren't covered by any of environments, well then you should probably check yo'self before you wreck yo'self. But if you really want to turn off warnings for some global variables, Coffee->JSHint supports it using the `--globals` or `-g` option. One use case is when using [Mocha](http://mochajs.org/), a testing library:
 
     coffee-jshint -o node --globals describe,it ...
 
