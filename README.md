@@ -64,11 +64,86 @@ fi
 
 This will take all the files you plan to commit changes to, run them through `coffee-jshint`, and exit with status code `1` if there are any warnings (which it will also print out). If there are warnings, the commit will be aborted, but you can always do `git commit --no-verify` to bypass the hook.
 
-## Releasing
+## Contributing
 
-To release a new version:
+### Prerequisites
 
-    git checkout master
-    npm version <major|minor|patch>
-    git push && git push --tags
-    npm publish
+  * [npm and node](https://nodejs.org/en/download/)
+  * [jq](https://stedolan.github.io/jq/download/)
+  * Some form of [make](https://en.wikipedia.org/wiki/Make_%28software%29)
+
+
+### Setup
+
+Clone this repository somewhere, switch to it, then:
+
+```bash
+$ git config commit.template ./.gitmessage
+$ npm install
+```
+
+This will:
+
+  * Set up [a helpful reminder](.gitmessage) of how to make [a good commit message](#commit-message-format-discipline).  If you adhere to this, then a
+    detailed, meaningful [CHANGELOG](CHANGELOG.md) can be constructed automatically;
+  * Install all required dependencies;
+  * The latter command will also invoke `make` (no args) for you, creating a build.
+
+
+### Build
+
+```bash
+make
+```
+
+
+### Commit
+
+#### Commit Message Format Discipline
+
+This project uses [`conventional-changelog/standard-version`](https://github.com/conventional-changelog/standard-version) for automatic versioning and
+[CHANGELOG](CHANGELOG.md) management.
+
+To make this work, *please* ensure that your commit messages adhere to the
+[Commit Message Format](https://github.com/bcoe/conventional-changelog-standard/blob/master/convention.md#commit-message-format).  Setting your `git config` to
+have the `commit.template` as referenced below will help you with [a detailed reminder](.gitmessage) of how to do this on every `git commit`.
+
+```bash
+$ git config commit.template ./.gitmessage
+```
+
+
+### Release
+
+  * Determine what your next [semver](https://docs.npmjs.com/getting-started/semantic-versioning#semver-for-publishers) `<version>` should be:
+
+    ```bash
+    $ version="<version>"
+    ```
+
+  * Bump the package's `.version`, update the [CHANGELOG](./CHANGELOG.md), commit these, and tag the commit as `v<version>`:
+
+    ```bash
+    $ npm run release
+    ```
+
+  * If all is well this new `version` **should** be identical to your intended `<version>`:
+
+    ```bash
+    $ jq ".version == \"${version}\"" package.json
+    ```
+
+    *If this is not the case*, then either your assumptions about what changed are wrong, or (at least) one of your commits did not adhere to the
+    [Commit Message Format Discipline](#commit-message-format-discipline); **Abort the release, and sort it out first.**
+
+  * Wrap up:
+
+    ```bash
+    $ git push --all --follow-tags
+    ```
+
+### Publish
+
+    ```bash
+    $ npm publish
+    ```
