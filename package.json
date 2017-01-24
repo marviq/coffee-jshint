@@ -12,13 +12,15 @@
   },
   "description": "Checks CoffeeScript source for errors using JSHint",
   "devDependencies": {
-    "coffee-script": "^1.12.2"
+    "coffee-script": "^1.12.2",
+    "standard-version": "^4.0.0"
   },
   "engines": {
     "node": ">=0.8.x"
   },
   "files": [
     "AUTHORS",
+    "CHANGELOG.md",
     "LICENSE",
     "README.md",
     "cli.js",
@@ -44,7 +46,8 @@
     "url": "git+https://github.com/marviq/coffee-jshint.git"
   },
   "scripts": {
-    "prepublish": "make"
+    "prepublish": "make",
+    "release": "standard-version"
   },
   "version": "0.2.5"
 }
