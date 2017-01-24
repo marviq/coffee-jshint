@@ -144,6 +144,6 @@ $ git config commit.template ./.gitmessage
 
 ### Publish
 
-    ```bash
-    $ npm publish
-    ```
+```bash
+$ npm publish
+```
