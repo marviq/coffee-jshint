@@ -139,14 +139,23 @@ $ git config commit.template ./.gitmessage
     *If this is not the case*, then either your assumptions about what changed are wrong, or (at least) one of your commits did not adhere to the
     [Commit Message Format Discipline](#commit-message-format-discipline); **Abort the release, and sort it out first.**
 
-  * Wrap up:
-
-    ```bash
-    $ git push --all --follow-tags
-    ```
 
 ### Publish
+
+#### To NPM
 
 ```bash
 $ npm publish
 ```
+
+#### On GitHub
+
+```bash
+git push --follow-tags --all
+```
+
+  * Go to [https://github.com/marviq/coffee-jshint/releases](https://github.com/marviq/coffee-jshint/releases);
+  * Click the `Draft a new release` button;
+  * Select the appropriate `v<version>` tag from the dropdown menu;
+  * You could enter a title and some release notes here but most of it _should_ have already been covered in the [CHANGELOG](CHANGELOG.md).
+  * Click the `Publish release` button;
