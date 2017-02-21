@@ -1,5 +1,8 @@
 # Coffee->JSHint
 
+[![npm version](https://badge.fury.io/js/coffee-jshint.svg)](http://badge.fury.io/js/coffee-jshint)
+[![David dependency drift detection](https://david-dm.org/marviq/coffee-jshint.svg)](https://david-dm.org/marviq/coffee-jshint)
+
 Runs your CoffeeScript source through [JSHint](http://www.jshint.com/) to check for errors.
 
 ## Installation
