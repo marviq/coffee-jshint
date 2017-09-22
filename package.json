@@ -6,14 +6,14 @@
     "url": "https://github.com/marviq/coffee-jshint/issues"
   },
   "dependencies": {
-    "jshint": "^2.9.4",
+    "jshint": "^2.9.5",
     "optimist": "~0.6.1",
     "underscore": "~1.8.3"
   },
   "description": "Checks CoffeeScript source for errors using JSHint",
   "devDependencies": {
-    "coffee-script": "^1.12.2",
-    "standard-version": "^4.0.0"
+    "coffee-script": "^1.12.7",
+    "standard-version": "^4.2.0"
   },
   "engines": {
     "node": ">=0.8.x"
