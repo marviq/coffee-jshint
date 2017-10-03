@@ -5,9 +5,11 @@
 
 Runs your CoffeeScript source through [JSHint](http://www.jshint.com/) to check for errors.
 
+**NOTE: As of version `1.0.0`, `coffee-jshint` changed its dependencies to be on [`coffeescript`](https://www.npmjs.com/package/coffeescript) in favor of the, now deprecated, [`coffee-script`](https://www.npmjs.com/package/coffee-script) name.**
+
 ## Installation
 
-    npm install coffee-script -g // See package.json for supported versions (most)
+    npm install coffeescript -g // See package.json for supported versions (most)
     npm install coffee-jshint -g
 
 ## Usage

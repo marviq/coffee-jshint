@@ -12,7 +12,7 @@
   },
   "description": "Checks CoffeeScript source for errors using JSHint",
   "devDependencies": {
-    "coffee-script": "^1.12.7",
+    "coffeescript": "^2.0.1",
     "standard-version": "^4.2.0"
   },
   "engines": {
@@ -29,6 +29,7 @@
   ],
   "homepage": "https://github.com/marviq/coffee-jshint#readme",
   "keywords": [
+    "coffee-script",
     "coffeescript",
     "jshint",
     "marviq"
@@ -36,7 +37,7 @@
   "license": "BSD-3-Clause",
   "name": "coffee-jshint",
   "peerDependencies": {
-    "coffee-script": ">= 1.6 < 2"
+    "coffeescript": ">= 1.6 < 3"
   },
   "private": false,
   "publishConfig": {

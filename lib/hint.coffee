@@ -1,5 +1,5 @@
 fs = require 'fs'
-CoffeeScript = require 'coffee-script'
+CoffeeScript = require 'coffeescript'
 _ = require 'underscore'
 jshint = require('jshint').JSHINT
 
