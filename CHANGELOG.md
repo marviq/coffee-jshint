@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/marviq/coffee-jshint/compare/v0.2.7...v1.0.0) (2017-10-03)
+
+
+### Chores
+
+* bump support to include CoffeeScript 2 (`<3`) ([94c40ce](https://github.com/marviq/coffee-jshint/commit/94c40ce))
+
+
+### BREAKING CHANGES
+
+* `peerDepencies` are now to [`coffeescript`](https://www.npmjs.com/package/coffeescript) in favor of the, now deprecated, [`coffee-script`](https://www.npmjs.com/package/coffee-script)
+
+
+
 <a name="0.2.7"></a>
 ## [0.2.7](https://github.com/marviq/coffee-jshint/compare/v0.2.6...v0.2.7) (2017-09-22)
 
