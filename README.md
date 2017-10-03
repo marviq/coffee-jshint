@@ -159,7 +159,11 @@ git push --follow-tags --all
   * Go to [https://github.com/marviq/coffee-jshint/releases](https://github.com/marviq/coffee-jshint/releases);
   * Click the `Draft a new release` button;
   * Select the appropriate `v<version>` tag from the dropdown menu;
-  * You could enter a title and some release notes here but most of it _should_ have already been covered in the [CHANGELOG](./CHANGELOG.md).
+
+  * You could enter a title and some release notes here; at the very least include a link to the corresponding section in the [CHANGELOG](./CHANGELOG.md) as:
+    ```markdown
+    [Change log](CHANGELOG.md# ... )
+    ```
   * Click the `Publish release` button;
 
 
