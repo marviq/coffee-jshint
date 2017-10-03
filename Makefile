@@ -4,7 +4,7 @@ LIBS=$(shell find . -regex "^./lib\/.*\.coffee\$$" | sed s/\.coffee$$/\.js/ | se
 build: $(LIBS) cli.js
 
 lib-js/%.js : lib/%.coffee
-	node_modules/coffee-script/bin/coffee --bare -c -o $(@D) $(patsubst lib-js/%,lib/%,$(patsubst %.js,%.coffee,$@))
+	node_modules/.bin/coffee --bare -c -o $(@D) $(patsubst lib-js/%,lib/%,$(patsubst %.js,%.coffee,$@))
 
 cli.js: ./lib-js/cli.js
 	echo "#!/usr/bin/env node" | cat - ./lib-js/cli.js > /tmp/cli.js
