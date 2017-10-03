@@ -16,7 +16,8 @@
     "standard-version": "^4.2.0"
   },
   "engines": {
-    "node": ">=0.8.x"
+    "node": ">=0.8",
+    "npm": ">=5"
   },
   "files": [
     "AUTHORS",
@@ -46,7 +47,7 @@
     "url": "git+https://github.com/marviq/coffee-jshint.git"
   },
   "scripts": {
-    "prepublish": "make",
+    "prepublishOnly": "make",
     "release": "standard-version"
   },
   "version": "0.2.7"
