@@ -90,7 +90,6 @@ This will:
   * Set up [a helpful reminder](.gitmessage) of how to make [a good commit message](#commit-message-format-discipline).  If you adhere to this, then a
     detailed, meaningful [CHANGELOG](./CHANGELOG.md) can be constructed automatically;
   * Install all required dependencies;
-  * The latter command will also invoke `make` (no args) for you, creating a build.
 
 
 ### Build
