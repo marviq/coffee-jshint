@@ -23,17 +23,30 @@ errorsToSkip = [
 
 # If log is true, prints out results after processing each file
 hintFiles = (paths, config, log) ->
-  options = buildTrueObj(
-    if config.withDefaults
-    then _.union config.options, defaultOptions
-    else config.options)
+  if config.jshintrc
+    data = fs.readFileSync(config.jshintrc, {encoding: "utf8"})
+    jsonData = JSON.parse(removeComments(data))
+
+    if jsonData.globals
+      globals = jsonData.globals
+      delete jsonData.globals;
+
+    options = jsonData
+  else
+    globals = splitArgs config.globals
+    splittedOptions = splitArgs config.options
+    options = buildTrueObj(
+      if (not config['default-options-off'])
+      then _.union splittedOptions, defaultOptions
+      else splittedOptions)
+
   _.map paths, (path) ->
     try
       source = fs.readFileSync(path)
     catch err
       if config.verbose then console.log "Error reading #{path}"
       return []
-    errors = hint source, options, buildTrueObj config.globals
+    errors = hint source, options, buildTrueObj globals
     if log and errors.length > 0
       console.log "--------------------------------"
       console.log formatErrors path, errors
@@ -71,5 +84,12 @@ formatErrors = (path, errors) ->
 
 buildTrueObj = (keys) ->
   _.object keys, (true for i in [0..keys.length])
+
+removeComments = (str = "") ->
+  str = str.replace(/\/\*(?:(?!\*\/)[\s\S])*\*\//g, "");
+  str = str.replace(/\/\/[^\n\r]*/g, ""); # Everything after '//'
+  return str;
+
+splitArgs = (strList) -> strList?.split(',') ? []
 
 module.exports = hintFiles
