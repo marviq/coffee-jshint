@@ -3,6 +3,24 @@ fs              = require( 'fs' )
 jshint          = require( 'jshint' ).JSHINT
 _               = require( 'underscore' )
 
+
+##  Adapted from https://github.com/jshint/jshint/blob/1553e3af6d2453eb52507a2c97971094897794d3/src/jshint.js#L158
+##
+supplantRe      = /\{([^{}]*)\}/g
+supplant        = ( str, args ) ->
+
+    return str.replace( supplantRe, ( matched, argName ) ->
+
+        argValue = args[ argName ]
+
+        return switch ( typeof argValue )
+            when 'number', 'string'
+                argValue
+            else
+                matched
+    )
+
+
 defaultOptions  = [
 
     'undef'
@@ -16,13 +34,47 @@ defaultOptions  = [
     'multistr'
 ]
 
-errorsToSkip    = [
-    'Did you mean to return a conditional instead of an assignment?'
-    'Confusing use of \'!\'.'
-    'Wrap the /regexp/ literal in parens to disambiguate the slash operator.'
-    'Creating global \'for\' variable. Should be \'for (var'
-    'Missing \'()\' invoking a constructor.'    ##  covered by coffeelint rule non_empty_constructor_needs_parens
-    'Bad number \'2e308\'.'
+
+errorsToSkip                = {}
+errorsToSkip[ error.code ]  = error for error in [
+
+    ##  > Confusing use of '{a}'.
+    ##
+    code:           'W018'
+    args:           a: '!'
+
+,
+    ##  > Bad number '{a}'.
+    ##
+    code:           'W045'
+    args:           a: '2e308'
+
+,
+    ##  > Missing '()' invoking a constructor.
+    ##
+    ##  Note: covered by coffeelint rule non_empty_constructor_needs_parens
+    ##
+    code:           'W058'
+
+,
+    ##  > Creating global 'for' variable. Should be 'for (var {a} ...'.
+    ##
+    code:           'W088'
+    args:            undefined     ##  because it don't matter what `{a}` is.
+
+,
+    ##  > Wrap the /regexp/ literal in parens to disambiguate the slash operator.
+    ##
+    ##  Note: removed from jshint as of version `2.4.1`.
+    ##
+    code:           'W092'
+
+,
+    ##  > Did you mean to return a conditional instead of an assignment?
+    ##
+    code:           'W093'
+
+,
 ]
 
 
@@ -90,6 +142,15 @@ hint = ( coffeeSource, options, globals ) ->
             ##
             _.compact( jshint.errors )
 
+                ##  Get rid of errors that don't apply to coffee very well
+                ##
+                .filter( ( error ) ->
+
+                    skip = errorsToSkip[ error.code ]
+
+                    return not( skip ) or ( skip.args and ( supplant( error.raw, skip.args ) isnt error.reason ))
+                )
+
                 ##  Convert errors to use coffee source locations instead of js locations
                 ##
                 .map( ( error ) ->
@@ -104,10 +165,6 @@ hint = ( coffeeSource, options, globals ) ->
                         character:  if col?  then col  + 1 else '?'
                     )
                 )
-
-                ##  Get rid of errors that don't apply to coffee very well
-                ##
-                .filter( ( error ) -> not _.any( errorsToSkip, ( to_skip ) -> error.reason.indexOf( to_skip ) >= 0 ) )
     )
 
 
