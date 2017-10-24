@@ -71,102 +71,10 @@ This will take all the files you plan to commit changes to, run them through `co
 
 ## Contributing
 
-### Prerequisites
-
-  * [npm and node](https://nodejs.org/en/download/)
-  * [jq](https://stedolan.github.io/jq/download/)
-  * Some form of [make](https://en.wikipedia.org/wiki/Make_%28software%29)
+See [CONTRIBUTING](./CONTRIBUTING.md).
 
 
-### Setup
-
-Clone this repository somewhere, switch to it, then:
-
-```bash
-$ git config commit.template ./.gitmessage
-$ npm install
-```
-
-This will:
-
-  * Set up [a helpful reminder](.gitmessage) of how to make [a good commit message](#commit-message-format-discipline).  If you adhere to this, then a
-    detailed, meaningful [CHANGELOG](./CHANGELOG.md) can be constructed automatically;
-  * Install all required dependencies;
-
-
-### Build
-
-```bash
-make
-```
-
-
-### Commit
-
-#### Commit Message Format Discipline
-
-This project uses [`conventional-changelog/standard-version`](https://github.com/conventional-changelog/standard-version) for automatic versioning and
-[CHANGELOG](./CHANGELOG.md) management.
-
-To make this work, *please* ensure that your commit messages adhere to the
-[Commit Message Format](https://github.com/bcoe/conventional-changelog-standard/blob/master/convention.md#commit-message-format).  Setting your `git config` to
-have the `commit.template` as referenced below will help you with [a detailed reminder](.gitmessage) of how to do this on every `git commit`.
-
-```bash
-$ git config commit.template ./.gitmessage
-```
-
-
-### Release
-
-  * Determine what your next [semver](https://docs.npmjs.com/getting-started/semantic-versioning#semver-for-publishers) `<version>` should be:
-
-    ```bash
-    $ version="<version>"
-    ```
-
-  * Bump the package's `.version`, update the [CHANGELOG](./CHANGELOG.md), commit these, and tag the commit as `v<version>`:
-
-    ```bash
-    $ npm run release
-    ```
-
-  * If all is well this new `version` **should** be identical to your intended `<version>`:
-
-    ```bash
-    $ jq ".version == \"${version}\"" package.json
-    ```
-
-    *If this is not the case*, then either your assumptions about what changed are wrong, or (at least) one of your commits did not adhere to the
-    [Commit Message Format Discipline](#commit-message-format-discipline); **Abort the release, and sort it out first.**
-
-
-### Publish
-
-#### To NPM
-
-```bash
-$ npm publish
-```
-
-#### On GitHub
-
-```bash
-git push --follow-tags --all
-```
-
-  * Go to [https://github.com/marviq/coffee-jshint/releases](https://github.com/marviq/coffee-jshint/releases);
-  * Click the `Draft a new release` button;
-  * Select the appropriate `v<version>` tag from the dropdown menu;
-
-  * You could enter a title and some release notes here; at the very least include a link to the corresponding section in the [CHANGELOG](./CHANGELOG.md) as:
-    ```markdown
-    [Change log](CHANGELOG.md# ... )
-    ```
-  * Click the `Publish release` button;
-
-
-## ChangeLog
+## Change Log
 
 See [CHANGELOG](./CHANGELOG.md).
 
