@@ -1,6 +1,8 @@
 CoffeeScript    = require( 'coffeescript' )
+csVersion       = require( 'coffeescript/package.json' ).version
 fs              = require( 'fs' )
 jshint          = require( 'jshint' ).JSHINT
+semver          = require( 'semver' )
 _               = require( 'underscore' )
 
 
@@ -42,6 +44,11 @@ errorsToSkip[ error.code ]  = error for error in [
     ##
     code:           'W018'
     args:           a: '!'
+
+,
+    ##  > Unnecessary semicolon.
+    ##
+    code:           'W032'
 
 ,
     ##  > Bad number '{a}'.
@@ -92,6 +99,12 @@ hintFiles = ( paths, config, log ) ->
 
             config.options
     )
+
+
+    ##  Ensure a matching `esversion` is set, depending on whether this is `coffeescript@<2`.
+    ##
+    options.esversion = if semver.satisfies( csVersion, '<2' ) then 5 else 6
+
 
     return _.map( paths, ( path ) ->
 
