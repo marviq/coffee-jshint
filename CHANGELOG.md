@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/marviq/coffee-jshint/compare/v1.0.0...v1.0.1) (2017-10-24)
+
+
+### Bug Fixes
+
+* set correct `jshint` `esversion` depending on coffeescript's version ([dbb4eae](https://github.com/marviq/coffee-jshint/commit/dbb4eae))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/marviq/coffee-jshint/compare/v0.2.7...v1.0.0) (2017-10-03)
 
