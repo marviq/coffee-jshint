@@ -84,11 +84,11 @@ This will take all the files you plan to commit changes to, run them through `co
 Clone this repository somewhere, switch to it, then:
 
 ```bash
-$ git config commit.template ./.gitmessage
-$ git checkout master
-$ git checkout develop
-$ git flow init -d
-$ npm install
+git config commit.template ./.gitmessage
+git checkout master
+git checkout develop
+git flow init -d
+npm install
 ```
 
 This will:
@@ -124,7 +124,7 @@ To make this work, *please* ensure that your commit messages adhere to the
 to have the `commit.template` as referenced below will help you with [a detailed reminder](.gitmessage) of how to do this on every `git commit`.
 
 ```bash
-$ git config commit.template ./.gitmessage
+git config commit.template ./.gitmessage
 ```
 
 
@@ -142,25 +142,25 @@ $ git config commit.template ./.gitmessage
   * Determine what your next [semver](https://docs.npmjs.com/getting-started/semantic-versioning#semver-for-publishers) `<version>` should be:
 
     ```bash
-    $ version="<version>"
+    version="<version>"
     ```
 
   * Create and checkout a `release/v<version>` branch off of `develop`:
 
     ```bash
-    $ git flow release start "v${version}"
+    git flow release start "v${version}"
     ```
 
   * Bump the package's `.version`, update the [CHANGELOG](./CHANGELOG.md), commit these, and tag the commit as `v<version>`:
 
     ```bash
-    $ npm run release
+    npm run release
     ```
 
   * If all is well this new `version` **should** be identical to your intended `<version>`:
 
     ```bash
-    $ jq ".version == \"${version}\"" package.json
+    jq ".version == \"${version}\"" package.json
     ```
 
     *If this is not the case*, then either your assumptions about what changed are wrong, or (at least) one of your commits did not adhere to the
@@ -169,7 +169,7 @@ $ git config commit.template ./.gitmessage
   * Merge `release/v<version>` back into both `develop` and `master`, checkout `develop` and delete `release/v<version>`:
 
     ```bash
-    $ git flow release finish -n "v${version}"
+    git flow release finish -n "v${version}"
     ```
 
     Note that contrary to vanilla `git flow`, the merge commit into `master` will *not* have been tagged (that's what the
