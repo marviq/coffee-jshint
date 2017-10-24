@@ -74,7 +74,7 @@ This will take all the files you plan to commit changes to, run them through `co
 See [CONTRIBUTING](./CONTRIBUTING.md).
 
 
-## ChangeLog
+## Change Log
 
 See [CHANGELOG](./CHANGELOG.md).
 
