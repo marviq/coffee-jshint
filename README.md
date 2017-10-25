@@ -81,10 +81,10 @@ coffee-jshint -o node --globals describe,it ...
 ### Shell scripting
 
 Coffee->JSHint plays nicely with your favorite Unix utilities.  If you want to recursively search all the files in a directory, try piping in the results of a
-`find`.  Here's an example that also uses `grep` to filter out files in `node_modules/`:
+`find`.  Here's an example that also filters away any files under the `node_modules/` tree:
 
 ```sh
-find . -type f -path "*.coffee" | grep -v "node_modules/" | xargs coffee-jshint
+find . -name node_modules -prune -o -type f -name \*.coffee -print0 | xargs -0 coffee-jshint
 ```
 
 
