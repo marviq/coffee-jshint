@@ -25,18 +25,25 @@ supplant        = ( str, args ) ->
 
 defaultOptions  = [
 
-    'undef'
-
-    ##  options to relax for cs
+    ##  http://jshint.com/docs/options/#enforcing-options
     ##
-    'eqnull'
-    'expr'
-    'shadow'
-    'sub'
-    'multistr'
+    'undef'     ##  http://jshint.com/docs/options/#undef
+
+    ##  Options to relax for cs.
+    ##
+    ##  http://jshint.com/docs/options/#relaxing-options
+    ##
+    'eqnull'    ##  http://jshint.com/docs/options/#eqnull
+    'expr'      ##  http://jshint.com/docs/options/#expr
+    'loopfunc'  ##  http://jshint.com/docs/options/#loopfunc
+    'multistr'  ##  http://jshint.com/docs/options/#multistr
+    'shadow'    ##  http://jshint.com/docs/options/#shadow
+    'sub'       ##  http://jshint.com/docs/options/#sub
 ]
 
 
+##  Warnings / errors for which no relaxing options exist will be filtered away.
+##
 errorsToSkip                = {}
 errorsToSkip[ error.code ]  = error for error in [
 
