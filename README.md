@@ -51,9 +51,17 @@ To turn on more options, you can use the `--options` or `-o` flag:
 
     coffee-jshint -o trailing,browser,sub file1.coffee file2.coffee ...
 
+
 If you really must turn off some of the default options, use the `--default-options-off` flag (you can always use `--options` to turn some back on):
 
     coffee-jshint --default-options-off --options undef,eqnull ...
+
+
+#### About [`esversion`](http://jshint.com/docs/options/#esversion)
+
+ Since [the CoffeeScript compiler as of version `2` will produce ES6](http://coffeescript.org/announcing-coffeescript-2/), Coffee->JSHint (as of version
+ `1.0.1`) detects if your `coffeescript` has a semver version number `>= 2`, in which case the JSHint `esversion: 6` option will be set, and if not
+ `esversion: 5`.  This happens independent of the `--default-options-off` command line flag and currently there's no way to override this behaviour.
 
 
 ### Globals
