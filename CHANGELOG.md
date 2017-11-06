@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/marviq/coffee-jshint/compare/v1.0.1...v1.1.0) (2017-11-06)
+
+
+### Features
+
+* include `loopfunc` with the default relaxing `jshint` options. ([4b21a36](https://github.com/marviq/coffee-jshint/commit/4b21a36)), closes [#25](https://github.com/marviq/coffee-jshint/issues/25)
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/marviq/coffee-jshint/compare/v1.0.0...v1.0.1) (2017-10-24)
 
