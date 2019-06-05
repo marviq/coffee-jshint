@@ -32,13 +32,12 @@
   "keywords": [
     "coffee-script",
     "coffeescript",
-    "jshint",
-    "marviq"
+    "jshint"
   ],
   "license": "BSD-3-Clause",
   "name": "coffee-jshint",
   "peerDependencies": {
-    "coffeescript": ">= 1.6 < 3"
+    "coffeescript": ">= 1.6 <3"
   },
   "private": false,
   "publishConfig": {
