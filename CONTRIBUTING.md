@@ -48,7 +48,7 @@ This project uses [`git flow`](https://github.com/nvie/gitflow#readme).  Here's 
 This project uses [`conventional-changelog/standard-version`](https://github.com/conventional-changelog/standard-version) for automatic versioning and
 [CHANGELOG](./CHANGELOG.md) management.
 
-To make this work, *please* ensure that your commit messages adhere to the
+To make this work, _please_ ensure that your commit messages adhere to the
 [Commit Message Format](https://github.com/bcoe/conventional-changelog-standard/blob/master/convention.md#commit-message-format).  Setting your `git config`
 to have the `commit.template` as referenced below will help you with [a detailed reminder](.gitmessage) of how to do this on every `git commit`.
 
@@ -68,40 +68,40 @@ git config commit.template ./.gitmessage
     git pull
     ```
 
-  * Determine what your next [semver](https://docs.npmjs.com/getting-started/semantic-versioning#semver-for-publishers) `<version>` should be:
+  * Determine what your next [semver](https://docs.npmjs.com/getting-started/semantic-versioning#semver-for-publishers) _`<version>`_ should be:
 
     ```bash
     version="<version>"
     ```
 
-  * Create and checkout a `release/v<version>` branch off of `develop`:
+  * Create and checkout a `release/v`_`<version>`_ branch off of `develop`:
 
     ```bash
     git flow release start "v${version}"
     ```
 
-  * Bump the package's `.version`, update the [CHANGELOG](./CHANGELOG.md), commit these, and tag the commit as `v<version>`:
+  * Bump the package's `.version`, update the [CHANGELOG](./CHANGELOG.md), commit these, and tag the commit as `v`_`<version>`_:
 
     ```bash
     npm run release
     ```
 
-  * If all is well this new `version` **should** be identical to your intended `<version>`:
+  * If all is well, this new `.version` **should** be identical to your intended _`<version>`_:
 
     ```bash
     jq ".version == \"${version}\"" package.json
     ```
 
-    *If this is not the case*, then either your assumptions about what changed are wrong, or (at least) one of your commits did not adhere to the
+    _If this is not the case_, then either your assumptions about what changed are wrong, or (at least) one of your commits did not adhere to the
     [Commit Message Format Discipline](#commit-message-format-discipline); **Abort the release, and sort it out first.**
 
-  * Merge `release/v<version>` back into both `develop` and `master`, checkout `develop` and delete `release/v<version>`:
+  * Merge `release/v`_`<version>`_ back into both `develop` and `master`, checkout `develop` and delete `release/v`_`<version>`_:
 
     ```bash
     git flow release finish -n "v${version}"
     ```
 
-    Note that contrary to vanilla `git flow`, the merge commit into `master` will *not* have been tagged (that's what the
+    Note that contrary to vanilla `git flow`, the merge commit into `master` will _not_ have been tagged (that's what the
     [`-n`](https://github.com/nvie/gitflow/wiki/Command-Line-Arguments#git-flow-release-finish--fsumpkn-version) was for).  This is done because
     `npm run release` has already tagged its own commit.
 
@@ -127,7 +127,7 @@ git push --follow-tags --all
 
   * Go to [https://github.com/marviq/coffee-jshint/releases](https://github.com/marviq/coffee-jshint/releases);
   * Click the `Draft a new release` button;
-  * Select the appropriate `v<version>` tag from the dropdown menu;
+  * Select the appropriate `v`_`<version>`_ tag from the dropdown menu;
   * You could enter a title and some release notes here; at the very least include a link to the corresponding section in the [CHANGELOG](./CHANGELOG.md) as:
     ```markdown
     [Change log](CHANGELOG.md# ... )

@@ -116,11 +116,11 @@ This will take all the files you plan to commit changes to, run them through `co
 See [CONTRIBUTING](./CONTRIBUTING.md).
 
 
-## Change Log
+## Changelog
 
 See [CHANGELOG](./CHANGELOG.md).
 
 
 ## License
 
-[BSD-3-Clause](LICENSE)
+[BSD-3-Clause](./LICENSE)

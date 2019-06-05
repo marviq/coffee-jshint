@@ -1,0 +1,11 @@
+##
+##  This is the annotated, default '.gitattributes' file.
+##
+##  http://git-scm.com/docs/gitattributes
+##
+
+##  Auto detect text files for all paths and perform LF normalization.
+##
+##  http://git-scm.com/docs/gitattributes#__code_text_code
+##
+* text=auto
