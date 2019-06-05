@@ -85,6 +85,15 @@ git config commit.template ./.gitmessage
     git flow release start "v${version}"
     ```
 
+  * Push this branch upstream.
+
+    ```bash
+    git push --set-upstream origin "release/v${version}"
+    ```
+
+  * Let the usual acceptance process take its course. If any changes are needed, code them in, test, rinse & repeat the previous step until everything is
+    indeed _accepted_.
+
   * Bump the package's `.version`, update the [CHANGELOG](./CHANGELOG.md), commit these, and tag the commit as `v`_`<version>`_:
 
     ```bash
@@ -100,6 +109,14 @@ git config commit.template ./.gitmessage
     _If this is not the case_, then either your assumptions about what changed are wrong, or (at least) one of your commits did not adhere to the
     [Commit Message Format Discipline](#commit-message-format-discipline); **Abort the release, and sort it out first.**
 
+  * Ensure the `npm run release` commit and tag are pushed upstream too:
+
+    ```bash
+    git push --follow-tags
+    ```
+
+    This will also ensure that the `git flow release finish ...` below will be able to delete the release branch without error.
+
   * Merge `release/v`_`<version>`_ back into both `develop` and `master`, checkout `develop` and delete `release/v`_`<version>`_:
 
     ```bash
@@ -112,6 +129,19 @@ git config commit.template ./.gitmessage
 
     I believe that in practice, this won't make a difference for the use of `git flow`; and ensuring it's done the other way round instead would render the
     use of `conventional-changelog` impossible.
+
+  * Delete `release/v`_`<version>`_ upstream too:
+
+    ```bash
+    git push origin --delete "release/v${version}"
+    ```
+
+  * Finally, ensure that all other affected branches are pushed upstream:
+
+    ```bash
+    git push origin master
+    git push origin develop
+    ```
 
 
 ## Publish
