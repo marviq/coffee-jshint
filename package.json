@@ -49,6 +49,7 @@
     "url": "git+https://github.com/marviq/coffee-jshint.git"
   },
   "scripts": {
+    "hotfix": "standard-version --message 'chore(hotfix): %s'",
     "prepublishOnly": "make",
     "refresh": "set -x; npm install && npm prune && npm dedupe",
     "release": "standard-version"

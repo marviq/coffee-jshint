@@ -62,7 +62,10 @@ git config commit.template ./.gitmessage
 ```
 
 
-## Release
+## Release / Hotfix
+
+The steps layed out here are for the greater part oriented towards doing a regular release. To do a _hotfix_ release instead, just write `hotfix` wherever
+(and _everywhere_) any of the steps below say `release`.
 
   * Ensure that you're up to scratch:
 
@@ -74,6 +77,10 @@ git config commit.template ./.gitmessage
     ```
 
   * Determine what your next [semver](https://docs.npmjs.com/getting-started/semantic-versioning#semver-for-publishers) _`<version>`_ should be:
+
+      * For a regular release this should be based on the changes already in `develop` since the previous release or hotfix.
+      * For a hotfix release this should be based on the changes you envision doing for this hotfix; but if you foresee it being anything other than a
+        patch-level bump, you should probably reconsider wether this should _really_ be a hotfix.
 
     ```bash
     version="<version>"
@@ -91,6 +98,10 @@ git config commit.template ./.gitmessage
     git push --set-upstream origin "release/v${version}"
     ```
 
+  * If this is a _hotfix_, now is a good time to first go and code the hotfix changes; If this is a regular release, just move on to the next step.
+
+    As soon as the hotfix is ready and tested, it's time to move on the next step too.
+
   * Let the usual acceptance process take its course. If any changes are needed, code them in, test, rinse & repeat the previous step until everything is
     indeed _accepted_.
 
@@ -98,6 +109,12 @@ git config commit.template ./.gitmessage
 
     ```bash
     npm run release
+    ```
+
+    or
+
+    ```bash
+    npm run hotfix
     ```
 
   * If all is well, this new `.version` **should** be identical to your intended _`<version>`_:
