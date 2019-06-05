@@ -8,13 +8,13 @@
   "dependencies": {
     "jshint": "^2.9.5",
     "optimist": "~0.6.1",
-    "semver": "^5.4.1",
-    "underscore": "~1.8.3"
+    "semver": "^6.1.1",
+    "underscore": "^1.9.1"
   },
   "description": "Checks CoffeeScript source for errors using JSHint",
   "devDependencies": {
     "coffeescript": "^2.0.1",
-    "standard-version": "^4.2.0"
+    "standard-version": "^6.0.1"
   },
   "engines": {
     "node": ">=0.8",
@@ -32,13 +32,12 @@
   "keywords": [
     "coffee-script",
     "coffeescript",
-    "jshint",
-    "marviq"
+    "jshint"
   ],
   "license": "BSD-3-Clause",
   "name": "coffee-jshint",
   "peerDependencies": {
-    "coffeescript": ">= 1.6 < 3"
+    "coffeescript": ">= 1.6 <3"
   },
   "private": false,
   "publishConfig": {
@@ -49,8 +48,10 @@
     "url": "git+https://github.com/marviq/coffee-jshint.git"
   },
   "scripts": {
+    "hotfix": "standard-version --message 'chore(hotfix): %s'",
     "prepublishOnly": "make",
+    "refresh": "set -x; npm install && npm prune && npm dedupe",
     "release": "standard-version"
   },
-  "version": "1.1.0"
+  "version": "1.1.1"
 }

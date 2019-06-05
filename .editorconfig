@@ -34,6 +34,7 @@ trim_trailing_whitespace = true
 
 ##  Do not trim traling whitespace for markdown files.
 [*.md]
+max_line_length = off
 trim_trailing_whitespace = false
 
 ##  Mind your collegues' sanity: Indentation; no excuses, no exceptions.
@@ -44,4 +45,3 @@ indent_style = space
 ##  Except npm ;-) npm uses an indent width of 2, so comply with that.
 [package.json]
 indent_size = 2
-
