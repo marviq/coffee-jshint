@@ -6,15 +6,15 @@
     "url": "https://github.com/marviq/coffee-jshint/issues"
   },
   "dependencies": {
-    "jshint": "^2.9.5",
+    "jshint": "^2.10.3",
     "optimist": "~0.6.1",
-    "semver": "^6.1.1",
+    "semver": "^7.1.1",
     "underscore": "^1.9.1"
   },
   "description": "Checks CoffeeScript source for errors using JSHint",
   "devDependencies": {
     "coffeescript": "^2.0.1",
-    "standard-version": "^6.0.1"
+    "standard-version": "^7.0.1"
   },
   "engines": {
     "node": ">=0.8",
@@ -53,5 +53,5 @@
     "refresh": "set -x; npm install && npm prune && npm dedupe",
     "release": "standard-version"
   },
-  "version": "1.1.1"
+  "version": "1.1.2"
 }
