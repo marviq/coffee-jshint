@@ -53,5 +53,5 @@
     "refresh": "set -x; npm install && npm prune && npm dedupe",
     "release": "standard-version"
   },
-  "version": "1.1.2"
+  "version": "1.1.3"
 }
