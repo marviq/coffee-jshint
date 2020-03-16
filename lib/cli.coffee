@@ -1,94 +1,74 @@
+commander       = require( 'commander' )
 _               = require( 'underscore' )
 hintFiles       = require( './lib-js/hint' )
 
-{ argv, help }  =
+commander
+    .storeOptionsAsProperties( false )
+    .option(
 
-    require( 'optimist' )
-        .usage( '$0 [options] filename.coffee ...' )
-        .options(
+        '-o, --options <option>[,...]'
+        'comma separated list of JSHint options to turn on'
+    )
+    .option(
 
-            options:
+        '--default-options-off'
+        'turns off default options'
+    )
+    .option(
 
-                alias:      'o'
-                describe:   'comma separated list of JSHint options to turn on'
+        '-g, --globals <global>[,...]'
+        'comma separated list of global variable names to permit'
+    )
+    .option(
 
+        '-v, --verbose'
+        'print more detailed output'
+    )
+    .version(
 
-            'default-options-off':
+        require( './package.json' ).version
+    )
+    .arguments(
 
-                type:       'boolean'
-                describe:   'turns off default options'
-
-
-            globals:
-
-                alias:      'g'
-                describe:   'comma separated list of global variable names to permit'
-
-
-            verbose:
-
-                alias:      'v'
-                type:       'boolean'
-                describe:   'print more detailed output'
-
-
-            version:
-
-                type:       'boolean'
-                describe:   'print the version'
+        '<filename.coffee...>'
+    )
+    .parse()
 
 
-            help:
+options     = commander.opts()
 
-                alias:      'h'
-                type:       'boolean'
-                describe:   'print usage info'
-        )
+console.log( options )
 
-
-switch
-
-    when argv.version
-
-        console.log( require('./package.json').version )
+splitArgs   = (strList) -> strList?.split(',') ? []
 
 
-    when argv.help
+##  Filter out non-coffee paths.
+##
+{ coffee, other } = _.groupBy( commander.args, ( path ) -> if /.+\.coffee$/.test( path ) then 'coffee' else 'other' )
 
-        console.log( help() )
+if ( options.verbose and other?.length > 0 )
 
-
-    else
-
-        splitArgs = (strList) -> strList?.split(',') ? []
-
-        ##  Filter out non-coffee paths.
-        ##
-        { coffee, other } = _.groupBy( argv._, ( path ) -> if /.+\.coffee$/.test( path ) then 'coffee' else 'other' )
-
-        if ( argv.verbose and other?.length > 0 )
-
-            console.log( "Skipping files that don't end in .coffee:\n#{ other.join('\n') }" )
+    console.log( "Skipping files that don't end in .coffee:\n#{ other.join('\n') }" )
 
 
-        errors =
-            hintFiles(
+errors =
+    hintFiles(
 
-                coffee
-             ,
-                options:        splitArgs( argv.options )
-                withDefaults:   not( argv[ 'default-options-off' ] )
-                globals:        splitArgs( argv.globals )
-                verbose:        argv.verbose
+        coffee
+     ,
+        options:        splitArgs( options.options )
+        withDefaults:   not( options.defaultOptionsOff )
+        globals:        splitArgs( options.globals )
+        verbose:        !!( options.verbose )
 
-            ,
-                true
-            )
+    ,
+        true
+    )
 
-        if _.flatten( errors ).length is 0
+if _.flatten( errors ).length is 0
 
-            process.exit( 0 )
+    process.exit( 0 )
 
-        else
+else
 
-            process.exit( 1 )
+    process.exit( 1 )
