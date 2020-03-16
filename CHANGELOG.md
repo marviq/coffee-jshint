@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/marviq/coffee-jshint/compare/v1.1.3...v1.2.0) (2020-03-16)
+
+
+### Features
+
+* **cli:** replace deprecated `optimist` with `commander` ([09bc488](https://github.com/marviq/coffee-jshint/commit/09bc488e2938e39a34709efd4162b2f3380cfb75))
+
 ### [1.1.3](https://github.com/marviq/coffee-jshint/compare/v1.1.2...v1.1.3) (2020-03-14)
 
 ### [1.1.2](https://github.com/marviq/coffee-jshint/compare/v1.1.1...v1.1.2) (2019-12-30)
