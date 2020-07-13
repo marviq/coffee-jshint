@@ -14,7 +14,7 @@
   "description": "Checks CoffeeScript source for errors using JSHint",
   "devDependencies": {
     "coffeescript": "^2.5.1",
-    "standard-version": "^7.1.0"
+    "standard-version": "^8.0.1"
   },
   "engines": {
     "node": ">=0.8",
