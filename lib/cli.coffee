@@ -37,8 +37,6 @@ commander
 
 options     = commander.opts()
 
-console.log( options )
-
 splitArgs   = (strList) -> strList?.split(',') ? []
 
 
